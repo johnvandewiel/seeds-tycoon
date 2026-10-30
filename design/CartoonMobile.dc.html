@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sunny Garden mobile dashboard</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&amp;family=Nunito:wght@700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2B1E3F}a:hover{color:#5A3E86}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #9BDCFF; color: #2B1E3F; font-family: Nunito, system-ui, sans-serif; font-weight: 800; display: flex; flex-direction: column; overflow: hidden">
+<div style="flex: 1; padding: 18px 16px 12px; display: flex; flex-direction: column; gap: 12px; overflow: hidden">
+
+<div style="display: flex; align-items: center; gap: 10px">
+<div style="position: relative; width: 54px; height: 54px; flex: none">
+<svg width="54" height="54" viewBox="0 0 84 84" aria-hidden="true"><path d="M42 4l10 22 24 3-18 16 5 24-21-12-21 12 5-24L8 29l24-3z" fill="#FFD23F" stroke="#2B1E3F" stroke-width="5" stroke-linejoin="round"></path></svg>
+<div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding-top: 5px; font-family: 'Lilita One', sans-serif; font-size: 20px">7</div>
+</div>
+<div style="flex: 1; min-width: 0">
+<div style="font-family: 'Lilita One', sans-serif; font-size: 20px">[@yourhandle]</div>
+<div style="font-size: 13px">Master Grower</div>
+</div>
+<div style="display: flex; align-items: center; gap: 6px; background: #FFF1B8; border: 3px solid #2B1E3F; border-radius: 16px; box-shadow: 0 4px 0 #2B1E3F; padding: 6px 12px; font-family: 'Lilita One', sans-serif; font-size: 18px">
+<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="#FFD23F" stroke="#2B1E3F" stroke-width="2.5"></circle></svg>€1,286
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="height: 24px; border: 4px solid #2B1E3F; border-radius: 999px; background: #FFFFFF; overflow: hidden; box-sizing: border-box">
+<div style="width: 78%; height: 100%; background: repeating-linear-gradient(-45deg, {{accent}} 0 12px, #FFE27A 12px 24px); border-right: 4px solid #2B1E3F; box-sizing: border-box"></div>
+</div>
+<div style="display: flex; justify-content: space-between; font-size: 12px"><span>2,340 / 3,000 XP</span><span>LV 8 = 15% cut!</span></div>
+</div>
+
+<div style="border: 4px solid #2B1E3F; border-radius: 26px; box-shadow: 0 6px 0 #2B1E3F; overflow: hidden; background: #D7F0FF; position: relative">
+<svg width="350" height="226" viewBox="0 0 350 226" role="img" aria-label="Your garden: three smiling plants, Northern Lights is ready to harvest">
+<circle cx="305" cy="42" r="24" fill="#FFD23F" stroke="#2B1E3F" stroke-width="4"></circle>
+<path d="M40 50a14 14 0 0 1 26-6 11 11 0 0 1 18 9H40z" fill="#FFFFFF" stroke="#2B1E3F" stroke-width="3.5" stroke-linejoin="round"></path>
+<path d="M-10 186C40 168 90 176 140 182S250 168 360 180V240H-10Z" fill="#6BCB4B" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"></path>
+<g transform="translate(26 111) scale(0.88)">
+<path d="M50 66V28" stroke="#2B1E3F" stroke-width="10" stroke-linecap="round"></path><path d="M50 66V28" stroke="#3FA34D" stroke-width="5" stroke-linecap="round"></path>
+<path d="M50 48C30 48 18 36 16 22C34 22 46 32 50 48Z" fill="#6BCB4B" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"></path><path d="M50 48C70 48 82 36 84 22C66 22 54 32 50 48Z" fill="#6BCB4B" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"></path><path d="M50 34C41 26 41 12 50 3C59 12 59 26 50 34Z" fill="#8BE05F" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"></path>
+<rect x="16" y="62" width="68" height="13" rx="6.5" fill="#FFA65C" stroke="#2B1E3F" stroke-width="4"></rect><path d="M22 75H78L72 106H28Z" fill="#FF8A3D" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"></path>
+<circle cx="40" cy="86" r="4" fill="#2B1E3F"></circle><circle cx="60" cy="86" r="4" fill="#2B1E3F"></circle><path d="M43 94Q50 100 57 94" fill="none" stroke="#2B1E3F" stroke-width="3" stroke-linecap="round"></path>
+</g>
+<g transform="translate(112 72) scale(1.24)">
+<path d="M50 66V28" stroke="#2B1E3F" stroke-width="10" stroke-linecap="round"></path><path d="M50 66V28" stroke="#3FA34D" stroke-width="5" stroke-linecap="round"></path>
+<path d="M50 48C30 48 18 36 16 22C34 22 46 32 50 48Z" fill="#6BCB4B" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"></path><path d="M50 48C70 48 82 36 84 22C66 22 54 32 50 48Z" fill="#6BCB4B" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"></path><path d="M50 34C41 26 41 12 50 3C59 12 59 26 50 34Z" fill="#8BE05F" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"></path>
+<rect x="16" y="62" width="68" height="13" rx="6.5" fill="#FFA65C" stroke="#2B1E3F" stroke-width="4"></rect><path d="M22 75H78L72 106H28Z" fill="#FF8A3D" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"></path>
+<circle cx="40" cy="86" r="4" fill="#2B1E3F"></circle><circle cx="60" cy="86" r="4" fill="#2B1E3F"></circle><circle cx="33" cy="94" r="4" fill="#FF6FA8" opacity="0.7"></circle><circle cx="67" cy="94" r="4" fill="#FF6FA8" opacity="0.7"></circle><path d="M41 93Q50 104 59 93Z" fill="#2B1E3F" stroke="#2B1E3F" stroke-width="3" stroke-linejoin="round"></path>
+</g>
+<g transform="translate(250 126) scale(0.74)">
+<path d="M50 66V40" stroke="#2B1E3F" stroke-width="10" stroke-linecap="round"></path><path d="M50 66V40" stroke="#3FA34D" stroke-width="5" stroke-linecap="round"></path>
+<path d="M50 54C38 54 30 47 28 38C40 38 47 44 50 54Z" fill="#6BCB4B" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"></path><path d="M50 54C62 54 70 47 72 38C60 38 53 44 50 54Z" fill="#8BE05F" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"></path>
+<rect x="16" y="62" width="68" height="13" rx="6.5" fill="#FFA65C" stroke="#2B1E3F" stroke-width="4"></rect><path d="M22 75H78L72 106H28Z" fill="#FF8A3D" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"></path>
+<circle cx="40" cy="86" r="4" fill="#2B1E3F"></circle><circle cx="60" cy="86" r="4" fill="#2B1E3F"></circle><path d="M45 95H55" fill="none" stroke="#2B1E3F" stroke-width="3" stroke-linecap="round"></path>
+</g>
+<g transform="rotate(8 228 46)">
+<rect x="196" y="30" width="72" height="30" rx="15" fill="#FF6FA8" stroke="#2B1E3F" stroke-width="4"></rect>
+<text x="232" y="51" text-anchor="middle" font-family="'Lilita One', sans-serif" font-size="17" fill="#FFFFFF">Ready!</text>
+</g>
+</svg>
+</div>
+
+<button type="button" style="min-height: 56px; border: 4px solid #2B1E3F; border-radius: 18px; background: {{accent}}; color: #2B1E3F; box-shadow: 0 5px 0 #2B1E3F; font: 400 22px 'Lilita One', sans-serif; cursor: pointer">Harvest Northern Lights!</button>
+
+<div style="display: flex; gap: 8px">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="3">
+<div style="{{c.style}}">
+<span style="font-family: 'Lilita One', sans-serif; font-size: 22px; line-height: 1">{{c.value}}</span>
+<span style="font-size: 11px">{{c.label}}</span>
+</div>
+</sc-for>
+</div>
+
+<div style="background: #FFF6E0; border: 4px solid #2B1E3F; border-radius: 22px; box-shadow: 0 5px 0 #2B1E3F; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px">
+<div style="font-family: 'Lilita One', sans-serif; font-size: 20px">Today's quests</div>
+<sc-for list="{{quests}}" as="q" hint-placeholder-count="2">
+<div style="display: flex; align-items: center; gap: 10px">
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 14px">{{q.title}}</span>
+<div style="height: 10px; border: 2px solid #2B1E3F; border-radius: 999px; background: #FFFFFF; overflow: hidden; box-sizing: border-box"><div style="width: {{q.pct}}%; height: 100%; background: #6CC6FF"></div></div>
+</div>
+<span style="background: #FFD23F; border: 2px solid #2B1E3F; border-radius: 10px; padding: 1px 8px; font-size: 13px; font-weight: 900">{{q.reward}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+
+<nav aria-label="Main" style="height: 78px; flex: none; background: #FFF6E0; border-top: 4px solid #2B1E3F; display: flex; justify-content: space-around; align-items: center; padding: 0 6px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+<a href="#" style="{{t.style}}">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2B1E3F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{t.icon}}"></path></svg>
+<span>{{t.label}}</span>
+</a>
+</sc-for>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#FFD23F","options":["#FFD23F","#6CC6FF","#FF6FA8"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#FFD23F';
+    const chip = (bg) => 'flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; background: ' + bg + '; border: 3px solid #2B1E3F; border-radius: 16px; box-shadow: 0 4px 0 #2B1E3F; padding: 8px 4px';
+    const chips = [
+      { value: '412', label: 'clicks today', bg: '#D7F0FF' },
+      { value: '18', label: 'orders · week', bg: '#E2F8CF' },
+      { value: '6', label: 'day streak', bg: '#FFE0CC' }
+    ].map((c) => ({ ...c, style: chip(c.bg) }));
+    const quests = [
+      { title: 'Share your link in a Story', pct: 0, reward: '+150' },
+      { title: 'Get 5 orders this week', pct: 60, reward: '+300' }
+    ];
+    const base = 'min-width: 58px; min-height: 56px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; font-weight: 900; text-decoration: none; color: #2B1E3F; border-radius: 16px';
+    const tabs = [
+      { label: 'Garden', icon: 'M5 19c0-8 6-14 15-14 0 9-6 15-14 15M5 19l8-8', on: true },
+      { label: 'Quests', icon: 'M5 21V4M5 4h11l-2 4 2 4H5' },
+      { label: 'Shop', icon: 'M5 8h14l-1 13H6L5 8zM9 8a3 3 0 0 1 6 0' },
+      { label: 'Ranks', icon: 'M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z' },
+      { label: 'Me', icon: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0' }
+    ].map((t) => ({ ...t, style: base + (t.on ? '; background: ' + accent + '; border: 3px solid #2B1E3F' : '') }));
+    return { accent, chips, quests, tabs };
+  }
+}
+</script>
+</body>
+</html>

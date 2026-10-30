@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seeds Tycoon · Sunny Garden prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2B1E3F; --sky: #9BDCFF; --cream: #FFF6E0; --grass: #A8E27A; --leaf: #6BCB4B;
+    --sun: #FFD23F; --sun-soft: #FFE27A; --pink: #FF6FA8; --blue: #6CC6FF; --orange: #FF8A3D;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--sky); color: var(--ink); font: 700 16px Nunito, system-ui, sans-serif; }
+  button { font: inherit; color: var(--ink); cursor: pointer; transition: transform .08s; }
+  button:active { transform: translateY(3px); }
+  .wrap { max-width: 1232px; margin: 0 auto; padding: 24px 20px 120px; display: flex; flex-direction: column; gap: 20px; }
+  .display { font-family: 'Lilita One', sans-serif; font-weight: 400; }
+  .card { background: var(--cream); border: 4px solid var(--ink); border-radius: 28px; box-shadow: 0 7px 0 var(--ink); padding: 22px; }
+  .row { display: flex; flex-wrap: wrap; gap: 16px; }
+  .between { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .logo { font-size: 40px; line-height: 1; color: var(--sun); text-shadow: 3px 3px 0 var(--ink), -2px -2px 0 var(--ink), 2px -2px 0 var(--ink), -2px 2px 0 var(--ink), 0 6px 0 var(--ink); }
+  .chip { display: flex; align-items: center; gap: 8px; border: 4px solid var(--ink); border-radius: 18px; box-shadow: 0 5px 0 var(--ink); padding: 8px 14px; }
+  .chip b { font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 21px; display: block; line-height: 1.05; }
+  .chip small { font-size: 12px; font-weight: 800; }
+  .bar { border: 4px solid var(--ink); border-radius: 999px; background: #fff; overflow: hidden; }
+  .bar > div { height: 100%; transition: width .6s ease; }
+  .xp > div { background: repeating-linear-gradient(-45deg, var(--sun) 0 14px, var(--sun-soft) 14px 28px); border-right: 4px solid var(--ink); }
+  .btn { min-height: 48px; padding: 0 18px; border: 4px solid var(--ink); border-radius: 16px; box-shadow: 0 4px 0 var(--ink); font: 400 19px 'Lilita One', sans-serif; }
+  .tab { background: var(--cream); box-shadow: 0 5px 0 var(--ink); display: inline-flex; align-items: center; gap: 8px; }
+  .tab[aria-current="page"] { background: var(--sun); box-shadow: 0 2px 0 var(--ink); transform: translateY(3px); }
+  .badge { min-width: 24px; height: 24px; border-radius: 999px; background: var(--pink); color: #fff; border: 2px solid var(--ink); font: 900 13px Nunito, sans-serif; display: inline-flex; align-items: center; justify-content: center; padding: 0 6px; }
+  .plot { flex: 1 1 200px; position: relative; background: var(--cream); border: 4px solid var(--ink); border-radius: 24px; box-shadow: 0 5px 0 var(--ink); padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+  .pot { height: 140px; background: #D7F0FF; border: 3px solid var(--ink); border-radius: 18px; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; }
+  .pill { border: 2px solid var(--ink); border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: 900; white-space: nowrap; }
+  .ready-tag { position: absolute; top: -14px; right: -10px; background: var(--pink); color: #fff; border: 4px solid var(--ink); border-radius: 999px; padding: 4px 12px; font: 400 16px 'Lilita One', sans-serif; transform: rotate(8deg); animation: pop .45s ease-out; }
+  .hint { min-height: 48px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 13px; border: 3px dashed #C9B98F; border-radius: 16px; padding: 0 8px; }
+  .float { position: absolute; top: 40px; left: 0; right: 0; text-align: center; font: 400 30px 'Lilita One', sans-serif; color: var(--sun); text-shadow: 2px 2px 0 var(--ink), -2px -2px 0 var(--ink), 2px -2px 0 var(--ink), -2px 2px 0 var(--ink); pointer-events: none; animation: floatUp 1.2s ease-out forwards; }
+  .white { background: #fff; border: 3px solid var(--ink); border-radius: 20px; padding: 14px 16px; }
+  .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); background: var(--ink); color: var(--cream); border-radius: 18px; padding: 14px 22px; font-weight: 900; box-shadow: 0 6px 0 rgba(0,0,0,.25); z-index: 20; max-width: 90%; text-align: center; animation: toastIn .3s ease-out; }
+  .overlay { position: fixed; inset: 0; background: rgba(43,30,63,.6); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 30; }
+  .modal { width: 100%; max-width: 440px; background: var(--cream); border: 5px solid var(--ink); border-radius: 32px; box-shadow: 0 10px 0 var(--ink); padding: 26px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; animation: pop .45s ease-out; }
+  .bob { animation: bob 1.4s ease-in-out infinite; }
+  input { min-height: 52px; padding: 0 14px; border: 3px solid var(--ink); border-radius: 14px; background: #fff; color: var(--ink); font: 700 15px Nunito, sans-serif; }
+  @keyframes pop { 0% { transform: scale(.6); opacity: 0 } 60% { transform: scale(1.08); opacity: 1 } 100% { transform: scale(1) } }
+  @keyframes bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
+  @keyframes floatUp { 0% { transform: translateY(10px); opacity: 0 } 20% { opacity: 1 } 100% { transform: translateY(-60px); opacity: 0 } }
+  @keyframes toastIn { from { transform: translate(-50%, 30px); opacity: 0 } to { transform: translate(-50%, 0); opacity: 1 } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+// Seeds Tycoon — Sunny Garden clickable prototype (demo data, no backend).
+// Game rules and the real data model are described in ../HANDOFF.md.
+
+const LEVELS = [
+  { lv: 7,  min: 2000, next: 3000, title: 'Master Grower', rate: 12, perks: [] },
+  { lv: 8,  min: 3000, next: 4200, title: 'Garden Boss',   rate: 15, perks: ['15% commission on every order', 'New plot: Lemon Haze joins your shop', 'Golden watering can badge'] },
+  { lv: 9,  min: 4200, next: 5600, title: 'Seed Baron',    rate: 15, perks: ['Your own banner and colours on your shop', 'Early access to new drops'] },
+  { lv: 10, min: 5600, next: null, title: 'Seeds Tycoon',  rate: 18, perks: ['18% commission', 'Exclusive strains for your followers', 'Season bonus eligibility'] }
+];
+const levelFor = (xp) => LEVELS.reduce((cur, l) => (xp >= l.min ? l : cur), LEVELS[0]);
+const money = (n) => '€' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const num = (n) => n.toLocaleString('en-US');
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const LINK = 'amsterdammarijunaseeds.com/r/[yourhandle]';
+
+let S = {
+  tab: 'garden', xp: 2340, day: 1, clicks: 412, ordersWeek: 18, streak: 6,
+  earned: 1286.4, pending: 312, available: 974.4,
+  plots: [
+    { id: 'haze', name: 'Amsterdam Haze',  pct: 82,  clicks: 128, orders: 4 },
+    { id: 'nl',   name: 'Northern Lights', pct: 100, clicks: 211, orders: 7 },
+    { id: 'ww',   name: 'White Widow',     pct: 46,  clicks: 74,  orders: 2 },
+    { id: 'pk',   name: 'Purple Kush',     pct: 18,  clicks: 22,  orders: 0 },
+    { id: 'gel',  name: 'Gelato Auto',     pct: 67,  clicks: 96,  orders: 3 },
+    { id: 'sk',   name: 'Skunk #1',        pct: 38,  clicks: 51,  orders: 1 }
+  ],
+  quests: [
+    { id: 'story',  title: 'Share your link in a Story', goal: 1,  prog: 0,  reward: 150, claimed: false, unit: 'Story' },
+    { id: 'orders', title: 'Get 5 orders this week',     goal: 5,  prog: 3,  reward: 300, claimed: false, unit: 'orders' },
+    { id: 'clicks', title: 'First 10 clicks today',      goal: 10, prog: 10, reward: 50,  claimed: false, unit: 'clicks' }
+  ],
+  history: [{ date: '1 Oct', amount: 842.1, status: 'Paid' }, { date: '1 Sep', amount: 613.75, status: 'Paid' }],
+  toast: '', levelUp: false, burst: null, copied: false
+};
+
+let toastTimer;
+function set(patch) { S = Object.assign({}, S, typeof patch === 'function' ? patch(S) : patch); render(); }
+function toast(msg) { set({ toast: msg }); clearTimeout(toastTimer); toastTimer = setTimeout(() => set({ toast: '' }), 2600); }
+
+function award(xpGain, patch, msg) {
+  const before = levelFor(S.xp).lv;
+  const next = Object.assign({}, S, patch || {});
+  next.xp = S.xp + xpGain;
+  const after = levelFor(next.xp).lv;
+  if (after >= 8 && !next.plots.some((p) => p.id === 'lemon')) {
+    next.plots = next.plots.concat([{ id: 'lemon', name: 'Lemon Haze', pct: 8, clicks: 0, orders: 0 }]);
+  }
+  if (after > before) next.levelUp = true;
+  S = next;
+  toast(msg);
+}
+
+const actions = {
+  tab: (id) => set({ tab: id }),
+  harvest: (id) => {
+    award(120, { plots: S.plots.map((p) => (p.id === id ? Object.assign({}, p, { pct: 10 }) : p)), burst: id }, 'Harvest! +120 XP and fresh seeds planted');
+    setTimeout(() => set({ burst: null }), 1200);
+  },
+  simulate: () => {
+    let addClicks = 0, addOrders = 0;
+    const plots = S.plots.map((p, i) => {
+      const c = 8 + ((i * 5 + S.day * 3) % 14);
+      let o = (i + S.day) % 3 === 0 ? 1 : 0;
+      if (i === 0 && S.day % 2 === 1) o += 1;
+      addClicks += c; addOrders += o;
+      const grow = p.pct >= 100 ? 0 : 10 + ((i * 7 + S.day * 5) % 18) + o * 8;
+      return Object.assign({}, p, { clicks: p.clicks + c, orders: p.orders + o, pct: Math.min(100, p.pct + grow) });
+    });
+    const cash = Math.round(addOrders * 12.4 * 100) / 100;
+    award(addOrders * 40, {
+      day: S.day + 1, plots, clicks: S.clicks + addClicks, ordersWeek: S.ordersWeek + addOrders,
+      earned: S.earned + cash, pending: S.pending + cash, streak: S.streak + 1,
+      quests: S.quests.map((q) => (q.id === 'orders' ? Object.assign({}, q, { prog: Math.min(q.goal, q.prog + addOrders) }) : q))
+    }, `New day: +${addClicks} clicks, +${addOrders} orders, +${addOrders * 40} XP`);
+  },
+  claim: (id) => {
+    const q = S.quests.find((x) => x.id === id);
+    if (!q || q.claimed || q.prog < q.goal) return;
+    award(q.reward, { quests: S.quests.map((x) => (x.id === id ? Object.assign({}, x, { claimed: true }) : x)) }, `Quest complete! +${q.reward} XP`);
+  },
+  story: () => { S.quests = S.quests.map((q) => (q.id === 'story' ? Object.assign({}, q, { prog: 1 }) : q)); toast('Story logged. Claim your reward in Quests!'); },
+  copy: () => {
+    try { navigator.clipboard && navigator.clipboard.writeText(LINK); } catch (e) {}
+    S.copied = true; toast('Link copied. Paste it in your bio!');
+    setTimeout(() => set({ copied: false }), 2000);
+  },
+  payout: () => {
+    if (S.available < 50) return;
+    const amt = S.available;
+    S.history = [{ date: 'Today', amount: amt, status: 'Requested' }].concat(S.history);
+    S.available = 0;
+    toast('Payout of ' + money(amt) + ' requested');
+  },
+  closeLevel: () => set({ levelUp: false })
+};
+
+document.addEventListener('click', (e) => {
+  const el = e.target.closest('[data-action]');
+  if (el) actions[el.dataset.action](el.dataset.arg);
+});
+
+// ---------- view ----------
+const STAR = (n, size, fs) => `<div style="position:relative;width:${size}px;height:${size}px;flex:none"><svg width="${size}" height="${size}" viewBox="0 0 84 84" aria-hidden="true"><path d="M42 4l10 22 24 3-18 16 5 24-21-12-21 12 5-24L8 29l24-3z" fill="#FFD23F" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"/></svg><div class="display" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding-top:${Math.round(size / 10)}px;font-size:${fs}px">${n}</div></div>`;
+
+const STAGES = {
+  Seedling:  { bg: '#CDEBFF', mouth: 'M44 96H56', fill: 'none', hint: 'Thirsty! Share it to get clicks' },
+  Growing:   { bg: '#C9F2A8', mouth: 'M43 94Q50 100 57 94', fill: 'none', hint: 'Growing nicely' },
+  Flowering: { bg: '#FFD0E6', mouth: 'M43 94Q50 100 57 94', fill: 'none', hint: 'Almost ready, one more push!' },
+  Ready:     { bg: '#FFD23F', mouth: 'M41 93Q50 104 59 93Z', fill: '#2B1E3F', hint: '' }
+};
+const stageOf = (pct) => (pct >= 100 ? 'Ready' : pct >= 60 ? 'Flowering' : pct >= 30 ? 'Growing' : 'Seedling');
+
+function plantSvg(pct, st) {
+  const scale = (0.4 + (pct / 100) * 0.6).toFixed(2);
+  return `<svg width="120" height="132" viewBox="0 0 100 110" aria-hidden="true">
+    <g style="transform-origin:50px 66px;transform:scale(${scale});transition:transform .6s ease">
+      <path d="M50 66V28" stroke="#2B1E3F" stroke-width="10" stroke-linecap="round"/>
+      <path d="M50 66V28" stroke="#3FA34D" stroke-width="5" stroke-linecap="round"/>
+      <path d="M50 48C30 48 18 36 16 22C34 22 46 32 50 48Z" fill="#6BCB4B" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M50 48C70 48 82 36 84 22C66 22 54 32 50 48Z" fill="#6BCB4B" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M50 34C41 26 41 12 50 3C59 12 59 26 50 34Z" fill="#8BE05F" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"/>
+    </g>
+    <rect x="16" y="62" width="68" height="13" rx="6.5" fill="#FFA65C" stroke="#2B1E3F" stroke-width="4"/>
+    <path d="M22 75H78L72 106H28Z" fill="#FF8A3D" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"/>
+    <circle cx="40" cy="86" r="4" fill="#2B1E3F"/><circle cx="60" cy="86" r="4" fill="#2B1E3F"/>
+    <circle cx="33" cy="94" r="4" fill="#FF6FA8" opacity=".7"/><circle cx="67" cy="94" r="4" fill="#FF6FA8" opacity=".7"/>
+    <path d="${st.mouth}" fill="${st.fill}" stroke="#2B1E3F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`;
+}
+
+function chips() {
+  const list = [
+    ['clicks', num(S.clicks), '#D7F0FF', '#6CC6FF', 'M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11z'],
+    ['orders this week', num(S.ordersWeek), '#E2F8CF', '#6BCB4B', 'M5 19c0-8 6-14 15-14 0 9-6 15-14 15z'],
+    ['earned this month', money(S.earned), '#FFF1B8', '#FFD23F', 'M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16z'],
+    ['day streak', String(S.streak), '#FFE0CC', '#FF8A3D', 'M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-3 2-4 2-6 2 1 3 2 3 4 0-3-1-5 0-8z']
+  ];
+  return list.map(([label, value, bg, fill, d]) => `<div class="chip" style="background:${bg}"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="${d}" fill="${fill}" stroke="#2B1E3F" stroke-width="2.2" stroke-linejoin="round"/></svg><div><b>${value}</b><small>${label}</small></div></div>`).join('');
+}
+
+function garden(L) {
+  const plots = S.plots.map((p) => {
+    const stage = stageOf(p.pct), st = STAGES[stage], ready = stage === 'Ready';
+    return `<article class="plot">
+      ${ready ? '<div class="ready-tag">Ready!</div>' : ''}
+      ${S.burst === p.id ? '<div class="float">+120 XP</div>' : ''}
+      <div class="pot"><div class="${ready ? 'bob' : ''}" style="display:flex">${plantSvg(p.pct, st)}</div></div>
+      <div class="between" style="align-items:center"><h3 class="display" style="margin:0;font-size:20px">${esc(p.name)}</h3><span class="pill" style="background:${st.bg}">${stage}</span></div>
+      <div class="bar" style="height:16px;border-width:3px"><div style="width:${p.pct}%;background:var(--leaf)"></div></div>
+      <div class="between" style="font-size:14px"><span>${num(p.clicks)} clicks</span><span>${p.orders} orders</span></div>
+      ${ready ? `<button type="button" class="btn" style="background:var(--sun)" data-action="harvest" data-arg="${p.id}">Harvest! +120 XP</button>` : `<div class="hint">${st.hint}</div>`}
+    </article>`;
+  }).join('');
+  const locked = L.lv < 8 ? 'Opens at Level 8' : L.lv < 10 ? 'Next plot opens at Level 10' : 'All plots unlocked!';
+  return `<section class="card" style="background:var(--grass);display:flex;flex-direction:column;gap:16px">
+    <div class="between"><h2 class="display" style="margin:0;font-size:34px">My Garden</h2><span style="font-size:15px">Clicks water your plants · orders make them grow · full-grown plants give XP</span></div>
+    <div class="row">${plots}
+      <article class="plot" style="border-style:dashed;background:#94D267;box-shadow:none;align-items:center;justify-content:center;min-height:300px;text-align:center">
+        <svg width="56" height="56" viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="3" fill="#FFD23F" stroke="#2B1E3F" stroke-width="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5" fill="none" stroke="#2B1E3F" stroke-width="2" stroke-linecap="round"/></svg>
+        <div class="display" style="font-size:20px">Secret plot</div><div style="font-size:14px">${locked}</div>
+      </article>
+    </div></section>`;
+}
+
+function quests() {
+  const items = S.quests.map((q) => {
+    const done = q.prog >= q.goal, pct = Math.round((q.prog / q.goal) * 100);
+    const status = q.claimed ? 'Reward collected' : done ? 'Done! Claim your XP' : `${q.prog} of ${q.goal} ${q.unit}`;
+    const right = q.claimed ? '<span class="display" style="font-size:19px;color:#2E7D32">Claimed!</span>'
+      : done ? `<button type="button" class="btn" style="background:var(--sun)" data-action="claim" data-arg="${q.id}">Claim reward</button>`
+      : '<span style="font-size:14px">In progress</span>';
+    return `<div class="white" style="display:flex;flex-wrap:wrap;align-items:center;gap:14px">
+      <div style="flex:999 1 280px;min-width:0;display:flex;flex-direction:column;gap:8px">
+        <div class="between"><span style="font-weight:900;font-size:17px">${q.title}</span><span class="pill" style="background:var(--sun);border-radius:10px">+${q.reward} XP</span></div>
+        <div class="bar" style="height:14px;border-width:2px;background:#F1E6C8"><div style="width:${pct}%;background:var(--blue)"></div></div>
+        <div style="font-size:13px">${status}</div>
+      </div>
+      <div style="flex:1 1 160px;display:flex;justify-content:flex-end">${right}</div></div>`;
+  }).join('');
+  return `<section class="card" style="display:flex;flex-direction:column;gap:14px"><h2 class="display" style="margin:0;font-size:34px">Quests</h2><p style="margin:0">Finish quests for bonus XP. New quests drop every Monday.</p>${items}</section>`;
+}
+
+function ranks() {
+  const all = [{ name: 'Creator A', xp: 4810 }, { name: 'Creator B', xp: 3920 }, { name: 'Creator C', xp: 2105 }, { name: 'Creator D', xp: 1760 }, { name: 'You', xp: S.xp, me: true }]
+    .sort((a, b) => b.xp - a.xp).map((r, i) => Object.assign(r, { rank: i + 1 }));
+  const step = (r, h, bg) => `<div style="display:flex;flex-direction:column;align-items:center;gap:6px;flex:1"><span style="font-weight:900">${r.name}</span><span style="font-size:13px">${num(r.xp)} XP</span><div class="display" style="width:100%;height:${h}px;background:${bg};border:4px solid var(--ink);border-radius:14px 14px 0 0;display:flex;justify-content:center;padding-top:8px;font-size:28px;${r.me ? 'outline:4px solid var(--pink);outline-offset:3px' : ''}">${r.rank}</div></div>`;
+  const list = all.map((r) => `<div class="between" style="padding:10px 14px;border:3px solid var(--ink);border-radius:14px;background:${r.me ? 'var(--sun)' : '#fff'}"><span>${r.rank}. ${r.name}</span><span>${num(r.xp)} XP</span></div>`).join('');
+  return `<section class="card" style="display:flex;flex-direction:column;gap:16px"><h2 class="display" style="margin:0;font-size:34px">Top growers this season</h2>
+    <div style="display:flex;align-items:flex-end;gap:12px;max-width:520px;width:100%;margin:0 auto">${step(all[1], 90, '#D7F0FF')}${step(all[0], 124, 'var(--sun)')}${step(all[2], 70, '#FFD0E6')}</div>
+    <div style="display:flex;flex-direction:column;gap:8px">${list}</div>
+    <p style="margin:0;font-size:14px">Top 3 at the end of the season win a bonus payout. Prize: [SEASON PRIZE].</p></section>`;
+}
+
+function wallet() {
+  const tile = (label, value, bg, note) => `<div style="flex:1 1 220px;background:${bg};border:4px solid var(--ink);border-radius:20px;padding:14px 16px"><div style="font-size:13px;font-weight:900;text-transform:uppercase">${label}</div><div class="display" style="font-size:36px">${value}</div>${note ? `<div style="font-size:13px">${note}</div>` : ''}</div>`;
+  const hist = S.history.map((h) => `<div class="between" style="background:#fff;border:3px solid var(--ink);border-radius:14px;padding:10px 14px"><span>${h.date}</span><span style="font-weight:900">${money(h.amount)}</span><span style="font-weight:900;color:${h.status === 'Paid' ? '#2E7D32' : '#8A4B00'}">${h.status}</span></div>`).join('');
+  return `<section class="card" style="display:flex;flex-direction:column;gap:16px"><h2 class="display" style="margin:0;font-size:34px">Coin jar</h2>
+    <div class="row" style="gap:14px">${tile('Ready to pay out', money(S.available), '#FFF1B8')}${tile('Growing (pending)', money(S.pending), '#fff', 'Unlocks 14 days after delivery, once the return window closes')}${tile('Earned this month', money(S.earned), '#fff')}</div>
+    ${S.available >= 50 ? `<button type="button" class="btn" style="align-self:flex-start;background:var(--leaf)" data-action="payout">Request payout · ${money(S.available)}</button>` : '<div style="font-size:14px">Payouts open from €50. Keep growing!</div>'}
+    <h3 class="display" style="margin:0;font-size:22px">History</h3><div style="display:flex;flex-direction:column;gap:8px">${hist}</div></section>`;
+}
+
+function share() {
+  return `<section class="card" style="display:flex;flex-direction:column;gap:14px"><h2 class="display" style="margin:0;font-size:34px">Share your garden</h2>
+    <label for="link" style="font-weight:900">Your magic link (put it in your bio)</label>
+    <div class="row" style="gap:10px"><input id="link" readonly value="${LINK}" style="flex:999 1 280px;min-width:0"><button type="button" class="btn" style="flex:1 1 160px;background:var(--blue)" data-action="copy">${S.copied ? 'Copied!' : 'Copy link'}</button></div>
+    <div>Backup code for followers: <span class="pill" style="background:var(--sun);border-radius:8px;font-size:15px">[YOURCODE]</span></div>
+    <div class="white" style="display:flex;flex-wrap:wrap;align-items:center;gap:12px"><div style="flex:999 1 280px"><div style="font-weight:900">Posted a Story with your link?</div><div style="font-size:14px">Log it to finish the Story quest. Live version: detected automatically from Story clicks.</div></div><button type="button" class="btn" style="flex:1 1 160px;background:var(--sun)" data-action="story">I posted a Story</button></div>
+    <div class="white" style="background:#E2F8CF;font-size:14px"><div style="font-weight:900;font-size:15px;margin-bottom:6px">Keep your account safe</div>Use a neutral bio line like "My garden picks" with the link. Skip product photos and "buy" wording in posts, and add #ad when you promote.</div></section>`;
+}
+
+function render() {
+  const L = levelFor(S.xp);
+  const nextL = LEVELS.find((x) => x.lv === L.lv + 1);
+  const xpPct = L.next ? Math.round(((S.xp - L.min) / (L.next - L.min)) * 100) : 100;
+  const readyCount = S.plots.filter((p) => p.pct >= 100).length;
+  const claimable = S.quests.filter((q) => q.prog >= q.goal && !q.claimed).length;
+  const tabs = [['garden', 'Garden', readyCount], ['quests', 'Quests', claimable], ['ranks', 'Ranks', 0], ['wallet', 'Coin jar', 0], ['share', 'Share', 0]]
+    .map(([id, label, n]) => `<button type="button" class="btn tab" data-action="tab" data-arg="${id}" ${S.tab === id ? 'aria-current="page"' : ''}>${label}${n ? `<span class="badge">${n}</span>` : ''}</button>`).join('');
+  const screen = { garden: () => garden(L), quests, ranks, wallet, share }[S.tab]();
+
+  document.getElementById('app').innerHTML = `<div class="wrap">
+    <header class="between" style="align-items:center">
+      <div style="display:flex;align-items:center;gap:14px">
+        <svg width="60" height="60" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="28" fill="#FFD23F" stroke="#2B1E3F" stroke-width="4"/><path d="M32 46V26" stroke="#2B1E3F" stroke-width="4" stroke-linecap="round"/><path d="M32 34C22 34 17 27 16 20C26 20 31 26 32 34Z" fill="#6BCB4B" stroke="#2B1E3F" stroke-width="3.5" stroke-linejoin="round"/><path d="M32 30C42 30 47 23 48 16C38 16 33 22 32 30Z" fill="#8BE05F" stroke="#2B1E3F" stroke-width="3.5" stroke-linejoin="round"/></svg>
+        <div><div class="display logo">Seeds Tycoon</div><div style="font-size:15px;margin-top:6px">Hey [@yourhandle], day ${S.day} in your garden</div></div>
+      </div>
+      <div class="row" style="gap:10px">${chips()}</div>
+    </header>
+    <section class="card" style="display:flex;flex-wrap:wrap;align-items:center;gap:18px;padding:16px 22px">
+      ${STAR(L.lv, 78, 26)}
+      <div style="flex:999 1 420px;min-width:0;display:flex;flex-direction:column;gap:8px">
+        <div class="between"><span class="display" style="font-size:26px">${L.title}</span><span style="font-weight:900">${num(S.xp)}${L.next ? ' / ' + num(L.next) : ''} XP</span></div>
+        <div class="bar xp" style="height:28px"><div style="width:${xpPct}%"></div></div>
+        <div style="font-size:15px">${nextL ? `${num(L.next - S.xp)} XP to Level ${nextL.lv}: ${nextL.perks[0]}` : 'Max level reached. You are a true tycoon!'}</div>
+      </div>
+      <div style="flex:1 1 160px;background:#C9F2A8;border:4px solid var(--ink);border-radius:20px;padding:10px 14px;text-align:center"><div style="font-size:13px;font-weight:900;text-transform:uppercase">Your cut</div><div class="display" style="font-size:38px;line-height:1.1">${L.rate}%</div><div style="font-size:13px">of every order</div></div>
+    </section>
+    <nav aria-label="Dashboard sections" style="display:flex;flex-wrap:wrap;align-items:center;gap:10px">${tabs}<div style="flex:1 1 20px"></div>
+      <button type="button" data-action="simulate" style="min-height:48px;padding:0 16px;border:3px dashed var(--ink);border-radius:16px;background:#D7F0FF;font-weight:900;font-size:14px">Demo: simulate a day of traffic</button></nav>
+    ${screen}
+  </div>
+  ${S.toast ? `<div role="status" class="toast">${esc(S.toast)}</div>` : ''}
+  ${S.levelUp ? `<div class="overlay"><div role="dialog" aria-modal="true" aria-labelledby="lvl" class="modal">
+      <div class="bob">${STAR(L.lv, 120, 40)}</div>
+      <div id="lvl" class="display logo">Level up!</div>
+      <div style="font-size:18px;font-weight:900">You are now a ${L.title}</div>
+      <div style="width:100%;display:flex;flex-direction:column;gap:8px;text-align:left">${L.perks.map((t) => `<div class="white" style="border-radius:14px;padding:8px 12px">${t}</div>`).join('')}</div>
+      <button type="button" class="btn" style="width:100%;min-height:54px;background:var(--sun);font-size:22px" data-action="closeLevel">Awesome!</button>
+    </div></div>` : ''}`;
+}
+
+render();
+</script>
+</body>
+</html>

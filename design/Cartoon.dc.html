@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sunny Garden cartoon dashboard</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&amp;family=Nunito:wght@600;700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#9BDCFF}
+a{color:#2B1E3F}a:hover{color:#5A3E86}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #9BDCFF; color: #2B1E3F; font-family: Nunito, system-ui, sans-serif; font-weight: 700; padding: 28px 24px 40px; box-sizing: border-box">
+<div style="max-width: 1232px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px">
+
+<header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<div style="display: flex; align-items: center; gap: 14px">
+<svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="28" fill="#FFD23F" stroke="#2B1E3F" stroke-width="4"></circle><path d="M32 46V26" stroke="#2B1E3F" stroke-width="4" stroke-linecap="round"></path><path d="M32 34C22 34 17 27 16 20C26 20 31 26 32 34Z" fill="#6BCB4B" stroke="#2B1E3F" stroke-width="3.5" stroke-linejoin="round"></path><path d="M32 30C42 30 47 23 48 16C38 16 33 22 32 30Z" fill="#8BE05F" stroke="#2B1E3F" stroke-width="3.5" stroke-linejoin="round"></path></svg>
+<div>
+<div style="font-family: 'Lilita One', sans-serif; font-size: 44px; line-height: 1; color: #FFD23F; text-shadow: 3px 3px 0 #2B1E3F, -2px -2px 0 #2B1E3F, 2px -2px 0 #2B1E3F, -2px 2px 0 #2B1E3F, 0 6px 0 #2B1E3F">Seeds Tycoon</div>
+<div style="font-size: 16px; margin-top: 6px">Hey [@yourhandle], your garden missed you!</div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<sc-for list="{{res}}" as="r" hint-placeholder-count="4">
+<div style="{{r.style}}">
+<svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="{{r.icon}}" fill="{{r.fill}}" stroke="#2B1E3F" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"></path></svg>
+<div style="display: flex; flex-direction: column; line-height: 1.05">
+<span style="font-family: 'Lilita One', sans-serif; font-size: 22px">{{r.value}}</span>
+<span style="font-size: 12px; font-weight: 800">{{r.label}}</span>
+</div>
+</div>
+</sc-for>
+</div>
+</header>
+
+<section style="background: #FFF6E0; border: 4px solid #2B1E3F; border-radius: 28px; box-shadow: 0 7px 0 #2B1E3F; padding: 18px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 20px">
+<div style="position: relative; width: 84px; height: 84px; flex: none">
+<svg width="84" height="84" viewBox="0 0 84 84" aria-hidden="true"><path d="M42 4l10 22 24 3-18 16 5 24-21-12-21 12 5-24L8 29l24-3z" fill="#FFD23F" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"></path></svg>
+<div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding-top: 8px; font-family: 'Lilita One', sans-serif; font-size: 28px">7</div>
+</div>
+<div style="flex: 999 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: baseline">
+<span style="font-family: 'Lilita One', sans-serif; font-size: 28px">Master Grower</span>
+<span style="font-weight: 900">2,340 / 3,000 XP</span>
+</div>
+<div style="height: 28px; border: 4px solid #2B1E3F; border-radius: 999px; background: #FFFFFF; overflow: hidden; box-sizing: border-box">
+<div style="width: 78%; height: 100%; background: repeating-linear-gradient(-45deg, {{accent}} 0 14px, #FFE27A 14px 28px); border-right: 4px solid #2B1E3F; box-sizing: border-box"></div>
+</div>
+<div style="font-size: 15px">660 XP more and you unlock <span style="background: #FFD23F; padding: 0 8px; border-radius: 8px; border: 2px solid #2B1E3F">15% commission</span> plus a brand new plot!</div>
+</div>
+<div style="flex: 1 1 180px; background: #C9F2A8; border: 4px solid #2B1E3F; border-radius: 20px; padding: 12px 16px; text-align: center">
+<div style="font-size: 13px; font-weight: 900; text-transform: uppercase">Your cut</div>
+<div style="font-family: 'Lilita One', sans-serif; font-size: 40px; line-height: 1.1">12%</div>
+<div style="font-size: 13px">€312 on the way</div>
+</div>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; gap: 22px; align-items: flex-start">
+
+<section style="flex: 999 1 620px; min-width: 0; background: #A8E27A; border: 4px solid #2B1E3F; border-radius: 28px; box-shadow: 0 7px 0 #2B1E3F; padding: 22px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px">
+<h2 style="margin: 0; font-family: 'Lilita One', sans-serif; font-size: 34px; font-weight: 400">My Garden</h2>
+<span style="font-size: 15px">Clicks = water · Orders = growth</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 16px">
+<sc-for list="{{plots}}" as="p" hint-placeholder-count="6">
+<article style="flex: 1 1 200px; position: relative; background: #FFF6E0; border: 4px solid #2B1E3F; border-radius: 24px; box-shadow: 0 5px 0 #2B1E3F; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+<sc-if value="{{p.ready}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; top: -14px; right: -10px; background: #FF6FA8; color: #FFFFFF; border: 4px solid #2B1E3F; border-radius: 999px; padding: 4px 12px; font-family: 'Lilita One', sans-serif; font-size: 16px; transform: rotate(8deg)">Ready!</div>
+</sc-if>
+<div style="height: 140px; background: #D7F0FF; border: 3px solid #2B1E3F; border-radius: 18px; display: flex; align-items: flex-end; justify-content: center; overflow: hidden">
+<svg width="120" height="132" viewBox="0 0 100 110" aria-hidden="true">
+<g style="transform-origin: 50px 66px; transform: scale({{p.scale}})">
+<path d="M50 66V28" stroke="#2B1E3F" stroke-width="10" stroke-linecap="round"></path>
+<path d="M50 66V28" stroke="#3FA34D" stroke-width="5" stroke-linecap="round"></path>
+<path d="M50 48C30 48 18 36 16 22C34 22 46 32 50 48Z" fill="#6BCB4B" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"></path>
+<path d="M50 48C70 48 82 36 84 22C66 22 54 32 50 48Z" fill="#6BCB4B" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"></path>
+<path d="M50 34C41 26 41 12 50 3C59 12 59 26 50 34Z" fill="#8BE05F" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"></path>
+</g>
+<rect x="16" y="62" width="68" height="13" rx="6.5" fill="#FFA65C" stroke="#2B1E3F" stroke-width="4"></rect>
+<path d="M22 75H78L72 106H28Z" fill="#FF8A3D" stroke="#2B1E3F" stroke-width="4" stroke-linejoin="round"></path>
+<circle cx="40" cy="86" r="4" fill="#2B1E3F"></circle><circle cx="60" cy="86" r="4" fill="#2B1E3F"></circle>
+<circle cx="33" cy="94" r="4" fill="#FF6FA8" opacity="0.7"></circle><circle cx="67" cy="94" r="4" fill="#FF6FA8" opacity="0.7"></circle>
+<path d="{{p.mouth}}" fill="{{p.mouthFill}}" stroke="#2B1E3F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+<h3 style="margin: 0; font-family: 'Lilita One', sans-serif; font-size: 20px; font-weight: 400">{{p.name}}</h3>
+<span style="{{p.pill}}">{{p.stage}}</span>
+</div>
+<div style="height: 16px; border: 3px solid #2B1E3F; border-radius: 999px; background: #FFFFFF; overflow: hidden; box-sizing: border-box"><div style="width: {{p.pct}}%; height: 100%; background: #6BCB4B"></div></div>
+<div style="display: flex; justify-content: space-between; font-size: 14px"><span>{{p.clicks}} clicks</span><span>{{p.orders}} orders</span></div>
+<sc-if value="{{p.ready}}" hint-placeholder-val="{{ false }}">
+<button type="button" style="min-height: 48px; border: 4px solid #2B1E3F; border-radius: 16px; background: {{accent}}; color: #2B1E3F; box-shadow: 0 4px 0 #2B1E3F; font: 400 20px 'Lilita One', sans-serif; cursor: pointer">Harvest! +120 XP</button>
+</sc-if>
+</article>
+</sc-for>
+<article style="flex: 1 1 200px; border: 4px dashed #2B1E3F; border-radius: 24px; padding: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 280px; text-align: center; background: #94D267">
+<svg width="56" height="56" viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="3" fill="#FFD23F" stroke="#2B1E3F" stroke-width="2"></rect><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5" fill="none" stroke="#2B1E3F" stroke-width="2" stroke-linecap="round"></path></svg>
+<div style="font-family: 'Lilita One', sans-serif; font-size: 20px">Secret plot</div>
+<div style="font-size: 14px">Opens at Level 8</div>
+</article>
+</div>
+</section>
+
+<aside style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+<section style="background: #FFF6E0; border: 4px solid #2B1E3F; border-radius: 28px; box-shadow: 0 7px 0 #2B1E3F; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-family: 'Lilita One', sans-serif; font-size: 28px; font-weight: 400">Quests</h2>
+<sc-for list="{{quests}}" as="q" hint-placeholder-count="3">
+<div style="background: #FFFFFF; border: 3px solid #2B1E3F; border-radius: 18px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; gap: 8px"><span style="font-weight: 900">{{q.title}}</span><span style="background: #FFD23F; border: 2px solid #2B1E3F; border-radius: 10px; padding: 0 8px; font-weight: 900; font-size: 13px; white-space: nowrap">{{q.reward}}</span></div>
+<div style="height: 12px; border: 2px solid #2B1E3F; border-radius: 999px; background: #F1E6C8; overflow: hidden; box-sizing: border-box"><div style="width: {{q.pct}}%; height: 100%; background: #6CC6FF"></div></div>
+<div style="font-size: 13px">{{q.progress}}</div>
+</div>
+</sc-for>
+</section>
+
+<section style="background: #FFF6E0; border: 4px solid #2B1E3F; border-radius: 28px; box-shadow: 0 7px 0 #2B1E3F; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-family: 'Lilita One', sans-serif; font-size: 28px; font-weight: 400">Top growers</h2>
+<div style="display: flex; align-items: flex-end; justify-content: center; gap: 8px">
+<sc-for list="{{podium}}" as="d" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1">
+<span style="font-size: 14px; font-weight: 900">{{d.name}}</span>
+<div style="{{d.style}}">{{d.rank}}</div>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; justify-content: space-between; font-size: 14px; padding: 0 4px"><span>4. Creator C</span><span>2,105 XP</span></div>
+<div style="display: flex; justify-content: space-between; font-size: 14px; padding: 0 4px"><span>5. Creator D</span><span>1,760 XP</span></div>
+</section>
+
+<section style="background: #FFF6E0; border: 4px solid #2B1E3F; border-radius: 28px; box-shadow: 0 7px 0 #2B1E3F; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+<label for="ct-link" style="font-family: 'Lilita One', sans-serif; font-size: 24px">Your magic link</label>
+<input id="ct-link" readonly value="amsterdammarijunaseeds.com/r/[yourhandle]" style="min-height: 48px; padding: 0 12px; border: 3px solid #2B1E3F; border-radius: 14px; background: #FFFFFF; color: #2B1E3F; font: 700 14px Nunito, sans-serif">
+<button type="button" style="min-height: 52px; border: 4px solid #2B1E3F; border-radius: 16px; background: #6CC6FF; color: #2B1E3F; box-shadow: 0 4px 0 #2B1E3F; font: 400 20px 'Lilita One', sans-serif; cursor: pointer">Copy for my bio</button>
+</section>
+</aside>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#FFD23F","options":["#FFD23F","#6CC6FF","#FF6FA8"]},"$preview":{"width":1280,"height":1180}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#FFD23F';
+    const pill = (bg) => 'background: ' + bg + '; border: 2px solid #2B1E3F; border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: 900; white-space: nowrap';
+    const chip = (bg) => 'display: flex; align-items: center; gap: 8px; background: ' + bg + '; border: 4px solid #2B1E3F; border-radius: 18px; box-shadow: 0 5px 0 #2B1E3F; padding: 8px 14px';
+    const res = [
+      { label: 'clicks today', value: '412', bg: '#D7F0FF', fill: '#6CC6FF', icon: 'M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11z' },
+      { label: 'orders this week', value: '18', bg: '#E2F8CF', fill: '#6BCB4B', icon: 'M5 19c0-8 6-14 15-14 0 9-6 15-14 15z' },
+      { label: 'earned this month', value: '€1,286', bg: '#FFF1B8', fill: '#FFD23F', icon: 'M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16z' },
+      { label: 'day streak', value: '6', bg: '#FFE0CC', fill: '#FF8A3D', icon: 'M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-3 2-4 2-6 2 1 3 2 3 4 0-3-1-5 0-8z' }
+    ].map((r) => ({ ...r, style: chip(r.bg) }));
+    const stages = {
+      'Seedling': { bg: '#CDEBFF', mouth: 'M44 96H56', fill: 'none' },
+      'Growing': { bg: '#C9F2A8', mouth: 'M43 94Q50 100 57 94', fill: 'none' },
+      'Flowering': { bg: '#FFD0E6', mouth: 'M43 94Q50 100 57 94', fill: 'none' },
+      'Ready': { bg: '#FFD23F', mouth: 'M41 93Q50 104 59 93Z', fill: '#2B1E3F' }
+    };
+    const plots = [
+      { name: 'Amsterdam Haze', stage: 'Flowering', pct: 82, clicks: 128, orders: 4 },
+      { name: 'Northern Lights', stage: 'Ready', pct: 100, clicks: 211, orders: 7 },
+      { name: 'White Widow', stage: 'Growing', pct: 46, clicks: 74, orders: 2 },
+      { name: 'Purple Kush', stage: 'Seedling', pct: 18, clicks: 22, orders: 0 },
+      { name: 'Gelato Auto', stage: 'Flowering', pct: 67, clicks: 96, orders: 3 },
+      { name: 'Skunk #1', stage: 'Growing', pct: 38, clicks: 51, orders: 1 }
+    ].map((p) => {
+      const s = stages[p.stage];
+      return { ...p, ready: p.stage === 'Ready', scale: (0.4 + p.pct / 100 * 0.6).toFixed(2), pill: pill(s.bg), mouth: s.mouth, mouthFill: s.fill };
+    });
+    const quests = [
+      { title: 'Share your link in a Story', reward: '+150 XP', pct: 0, progress: 'Not started yet' },
+      { title: 'Get 5 orders this week', reward: '+300 XP', pct: 60, progress: '3 of 5, almost there!' },
+      { title: 'Keep your bio link 7 days', reward: '+200 XP', pct: 86, progress: '6 of 7 days' }
+    ];
+    const step = (h, bg, me) => 'width: 100%; height: ' + h + 'px; background: ' + bg + '; border: 4px solid #2B1E3F; border-radius: 14px 14px 0 0; box-sizing: border-box; display: flex; align-items: flex-start; justify-content: center; padding-top: 8px; font-family: \'Lilita One\', sans-serif; font-size: 28px' + (me ? '; outline: 4px solid #FF6FA8; outline-offset: 3px' : '');
+    const podium = [
+      { name: 'Creator B', rank: 2, style: step(90, '#D7F0FF') },
+      { name: 'Creator A', rank: 1, style: step(124, '#FFD23F') },
+      { name: 'You!', rank: 3, style: step(70, '#FFD0E6', true) }
+    ];
+    return { accent, res, plots, quests, podium };
+  }
+}
+</script>
+</body>
+</html>
